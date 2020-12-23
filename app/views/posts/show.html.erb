@@ -1,13 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <div>
-  <%#= image_tag @post.image.variant(resize: '400x400') %>
+  <%= post_image %>
   <b>
     <%= @post.title %>
   </b>
   <p>
     <%= @post.content %>
   </p>
+  <%= check_box 'post', 'touched' %>
 </div>
 
 <%= link_to 'Edit', edit_post_path(@post) %> |

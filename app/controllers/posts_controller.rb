@@ -28,7 +28,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        ActionCable.server.broadcast 'just_for_fun_channel', message: @post.to_json
+        JustForFunJob.perform_in(20.seconds, @post.id)
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
